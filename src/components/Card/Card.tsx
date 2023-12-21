@@ -1,3 +1,4 @@
+import { X } from 'react-feather';
 import IWeather from '../@types/weather';
 import './Card.scss';
 
@@ -31,6 +32,7 @@ function Card({weather}: ICard) {
         <div className='card-right-weather-icon'>
           {weatherIcons}
         </div>
+        <span className='card-right-close'><X /></span>
       </div>
     </div>
   );

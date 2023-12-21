@@ -1,15 +1,23 @@
+import { FormEvent, useState } from 'react';
 import './Input.scss';
 
+interface IInput {
+    setCity: React.Dispatch<React.SetStateAction<string>>;
+}
 
-function Input() {
+function Input({setCity}: IInput) {
  
-  // Pour chaque ligne du tableau dataWeathers (donc pour chaque ville présente) on retourne un élément Card et on lui transmet en props les données correponds
-  const cardsWeathers = dataWeathers.map((data, index) => <Card key={index} weather={data}/>)
+    const [inputValue, setInputValue] = useState(''); 
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        setCity(inputValue)
+    }
 
   return (
-    <div className='cards'>
-      {cardsWeathers}
-    </div>
+    <form className='form' onSubmit={handleSubmit}>
+        <input type="text" className='form-input-city' placeholder="Saisissez le nom d'une ville" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+    </form>
   );
 }
 
