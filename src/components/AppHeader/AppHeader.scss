@@ -1,0 +1,13 @@
+@use '../../styles/variables' as v;
+
+.appHeader {
+    background-color: v.$white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    color: v.$color-primary;
+    width: 75%;
+    margin: auto;
+    border-radius: 10px;
+}

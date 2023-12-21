@@ -1,0 +1,38 @@
+@use '../../styles/variables' as v;
+
+.card {
+    background-color: v.$color-alternativ;
+    border: 1px solid v.$white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    color: v.$white;
+    width: 75%;
+    margin: auto;
+    border-radius: 10px;
+    &-left{
+        width: 75%;
+        padding: .5rem 1rem;
+        &-data{
+            line-height: 0rem;
+            &-city{
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            &-weather-description{
+                color: #ffffff54;
+            }
+        }
+        &-temperature{
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+    }
+
+    &-right{
+        width: 25%;
+        padding: 1rem;
+    }
+}
