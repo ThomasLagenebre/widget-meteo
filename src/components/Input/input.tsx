@@ -1,13 +1,7 @@
-import IWeather from '../@types/weather';
-import Card from '../Card/Card';
-import './Cards.scss';
-
-interface ICards {
-  dataWeathers: IWeather[];
-}
+import './Input.scss';
 
 
-function Cards({dataWeathers}: ICards) {
+function Input() {
  
   // Pour chaque ligne du tableau dataWeathers (donc pour chaque ville présente) on retourne un élément Card et on lui transmet en props les données correponds
   const cardsWeathers = dataWeathers.map((data, index) => <Card key={index} weather={data}/>)
@@ -19,4 +13,4 @@ function Cards({dataWeathers}: ICards) {
   );
 }
 
-export default Cards
+export default Input
