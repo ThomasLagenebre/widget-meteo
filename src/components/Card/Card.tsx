@@ -3,11 +3,13 @@ import IWeather from '../@types/weather';
 import './Card.scss';
 
 interface ICard {
-  weather: IWeather
+  weather: IWeather;
+  id: number;
+  deleteCard: (row: number, cityToRemove: string) => void;
 }
 
 
-function Card({weather}: ICard) {
+function Card({weather, id, deleteCard}: ICard) {
 
   // Pour chaque élément du tableau weather (chaque ville peut avoir plusieurs conditions météorologiques en même temps), on retourne un span avec la description de la condition
   const weatherConditionsDescription = weather.weather.map((condition, index) => {
@@ -18,6 +20,10 @@ function Card({weather}: ICard) {
   const weatherIcons = weather.weather.map((condition, index) => {
     return <img key={index} src={`http://openweathermap.org/img/wn/${condition.icon}@2x.png`} alt="" />
   })
+
+  const handleClick = () => {
+    deleteCard(id, weather.name)
+  }
 
   return (
     <div className='card'>
@@ -32,7 +38,7 @@ function Card({weather}: ICard) {
         <div className='card-right-weather-icon'>
           {weatherIcons}
         </div>
-        <span className='card-right-close'><X /></span>
+        <span className='card-right-close' onClick={handleClick}><X /></span>
       </div>
     </div>
   );

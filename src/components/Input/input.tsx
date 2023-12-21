@@ -11,7 +11,8 @@ function Input({setCity}: IInput) {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        setCity(inputValue)
+        setCity(inputValue);
+        setInputValue('');
     }
 
   return (
