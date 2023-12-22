@@ -9,7 +9,7 @@ import { removeCityFromLocalStorage, setCitiesSelectedToLocalStorage } from '../
 
 function App() {
   // On récupère la clef API depuis .env.local
-  const apiKey = import.meta.env.VITE_OPENWEATHER_API_URL
+  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 
   // On créer un state pour stocker toutes les météos des villes voulues (tableau d'objet)
   const [dataWeathers, setDataWeathers] = useState<[] | IWeather[]>([]);

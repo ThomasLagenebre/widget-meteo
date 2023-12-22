@@ -6,11 +6,20 @@ interface IInput {
     setCity: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Input({setCity}: IInput) {
- 
-    const [inputValue, setInputValue] = useState(''); 
+interface ICity {
+    "codesPostaux": string[],
+    "nom": string,
+    "code": string,
+    "_score": number,
+    "departement": {
+        "code": string;
+        "nom": string;
+    }
+}
 
-    const [autoCompletClick, setAutoCompletClik] = useState(true);
+function Input({setCity}: IInput) {
+  
+    const [inputValue, setInputValue] = useState(''); 
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -18,14 +27,15 @@ function Input({setCity}: IInput) {
         setInputValue('');
     }
 
-    const [listCities, setListCities] = useState([]);
+    const [citiesList, setCitiesList] = useState<ICity[]>([]);
+
     const autoCompletCity = async (value: string) => {
       try {
         const response = await axios.get(
-          `https://geo.api.gouv.fr/communes?nom=${value}&fields=departement&boost=population&limit=5`
+          `https://geo.api.gouv.fr/communes?nom=${value}&fields=departement,codesPostaux&boost=population&limit=5`
         );
 
-        setListCities(response.data)
+        setCitiesList(response.data)
         
       } catch (error) {
         console.log("Erreur lors du chargement de l'API");
@@ -33,23 +43,21 @@ function Input({setCity}: IInput) {
     };
 
     useEffect(() => {
-      setAutoCompletClik(false)
       autoCompletCity(inputValue);
     }, [inputValue])
 
 
-    const liCities = listCities.map((city, index) => (
+     const liCities = citiesList.map((city, index) => (
       <li 
         key={index} 
         className='li-city' 
         onClick={() => {
-          setAutoCompletClik(true); 
           setInputValue(''); 
           setCity(city.nom);
           }}
         >
         {city.nom}, 
-        <span className='li-city-code'>{city.code}</span>
+        <span className='li-city-code'> {city.codesPostaux[0]}</span>
       </li>
     ))    
 
@@ -63,7 +71,7 @@ function Input({setCity}: IInput) {
           onChange={(e) => {
             setInputValue(e.target.value)
             }}/>
-        {inputValue && !autoCompletClick && (
+        {inputValue && (
           <ul className='autocomplet-city-list'>
             {liCities}
           </ul>

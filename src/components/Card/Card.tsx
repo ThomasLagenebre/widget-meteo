@@ -24,12 +24,14 @@ function Card({weather, id, deleteCard}: ICard) {
   const handleClick = () => {
     deleteCard(id, weather.name)
   }
+ 
+  
 
   return (
     <div className='card'>
       <div className='card-left'>
         <div className='card-left-data'>
-          <p className='card-left-data-city'>{weather.name}</p>
+          <p className='card-left-data-city'>{weather.name}, {weather.sys.country}</p>
           <p className='card-left-data-weather-description'>{weatherConditionsDescription}</p>
         </div>
         <p className='card-left-temperature'>{Math.round(weather.main.temp)}°</p>
