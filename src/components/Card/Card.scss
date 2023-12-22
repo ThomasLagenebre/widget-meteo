@@ -32,7 +32,6 @@
     }
 
     &-right{
-        width: 25%;
         padding: 1rem;
         &-close{
             position: absolute;
@@ -42,13 +41,9 @@
         }
         &-weather-icon {
             display: flex;
-            position: relative;
-            & img:first-child {
+            max-width: 100%;
+            & img {
                 width: 5rem;
-                position: absolute;
-                right: 0;
-                top: 50%;
-                transform: translateY(-50%);
             }
         }
         

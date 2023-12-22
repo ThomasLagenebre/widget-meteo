@@ -1,3 +1,6 @@
+@use '../../styles/variables' as v;
+
+
 .form{
     margin: 1rem auto;
     &-input-city{
@@ -7,4 +10,18 @@
         height: 2rem;
         padding: .5rem;
     }
+}
+
+.autocomplet-city-list {
+    list-style: none;
+    background-color: white;
+    margin-top: -1rem;
+    border-radius: 0 0 5px 5px;
+    padding: 1.5rem 0.5rem 0.5rem;
+    width: 97.5%;
+}
+
+.li-city:hover{
+    background-color: v.$color-alternativ;
+    cursor: pointer;
 }
